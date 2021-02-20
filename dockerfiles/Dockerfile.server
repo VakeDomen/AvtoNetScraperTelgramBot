@@ -1,0 +1,7 @@
+FROM node:13-alpine
+WORKDIR /server
+COPY app .
+COPY server.entrypoint.sh .
+RUN npm install && chmod 777 ./server.entrypoint.sh
+EXPOSE 3000
+ENTRYPOINT ["sh", "./server.entrypoint.sh"]

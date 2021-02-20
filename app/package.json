@@ -1,0 +1,34 @@
+{
+  "name": "avto-net-scraper-telegram-bot",
+  "version": "1.0.0",
+  "description": "Telegram bot, that scrapes avto.net for interesting deals",
+  "main": "src/server.ts",
+  "scripts": {
+    "start": "tsc && node ./build/server.js",
+    "tsc": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VakeDomen/AvtoNetScraperTelgramBot.git"
+  },
+  "keywords": [
+    "telegram",
+    "avto.net",
+    "scraper"
+  ],
+  "author": "VakeDomen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VakeDomen/AvtoNetScraperTelgramBot/issues"
+  },
+  "homepage": "https://github.com/VakeDomen/AvtoNetScraperTelgramBot#readme",
+  "dependencies": {
+    "@types/node": "^14.14.31",
+    "db-migrate": "^0.11.12",
+    "dotenv": "^8.2.0",
+    "mysql": "^2.18.1",
+    "telegraf": "^4.0.3",
+    "typescript": "^4.1.5",
+    "uuid": "^8.3.2"
+  }
+}
