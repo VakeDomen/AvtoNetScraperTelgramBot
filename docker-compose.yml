@@ -29,13 +29,10 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_HOST: db
-    ports:
-      - ${PORT}:${PORT}
     depends_on:
       - db
     networks: 
       - internal
-      - exposed
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
@@ -51,6 +48,8 @@ services:
     networks:
       - internal
       - exposed
+volumes:
+  dbdata:
 networks:
   internal: 
     internal: true

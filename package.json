@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.10",
+    "get-urls": "^10.0.0",
+    "node-fetch": "^2.6.1"
+  }
+}
