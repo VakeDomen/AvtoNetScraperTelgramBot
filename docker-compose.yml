@@ -1,56 +1,11 @@
 version: '3.2'
 services:
 
-  db:
-    image: mysql:5.7
-    container_name: avtonet_telegram_mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-    ports:
-      - "3306:3306"
-    volumes:
-      - dbdata:/var/lib/mysql
-    networks: 
-      - internal
   server:
     container_name: avtonet_telegram_server
     restart: "unless-stopped"
     build:
       context: .
       dockerfile: ./dockerfiles/Dockerfile.server
-    volumes:
-      - ./db:/server/app/db
     environment:
       BOT_TOKEN: ${BOT_TOKEN}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_HOST: db
-    depends_on:
-      - db
-    networks: 
-      - internal
-
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin:latest
-    container_name: avtonet_telegram_phpmyadmin
-    environment:
-      PMA_HOST: db
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-    restart: always
-    ports:
-      - 8080:80
-    networks:
-      - internal
-      - exposed
-volumes:
-  dbdata:
-networks:
-  internal: 
-    internal: true
-  exposed:

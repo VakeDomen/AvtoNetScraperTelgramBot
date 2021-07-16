@@ -24,8 +24,10 @@
   "homepage": "https://github.com/VakeDomen/AvtoNetScraperTelgramBot#readme",
   "dependencies": {
     "@types/node": "^14.14.31",
+    "cheerio": "^1.0.0-rc.10",
     "db-migrate": "^0.11.12",
     "dotenv": "^8.2.0",
+    "get-urls": "^10.0.0",
     "mysql": "^2.18.1",
     "telegraf": "^4.0.3",
     "typescript": "^4.1.5",

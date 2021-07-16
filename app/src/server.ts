@@ -1,15 +1,11 @@
 import { Telegraf } from 'telegraf';
 import * as dotenv from 'dotenv';
-import { onStart } from './controllers/start.controller';
-import { onHelp } from './controllers/help.controller';
-import { Filter } from './controllers/scraper/filter.scraper';
 import getUrls = require('get-urls');
 import * as fetch from 'node-fetch';
 import cheerio = require('cheerio');
 const fs = require('fs');
 
 let bot: Telegraf;
-let filter: Filter = new Filter();
 let deals: any = {}
 let timer = false;
 let last = new Date();
@@ -94,9 +90,7 @@ async function scrape(ctx, silent?: boolean) {
 function initBot(): void {
     console.log("Setting up bot...");
     bot = new Telegraf(process.env.BOT_TOKEN || '');
-    bot.start(onStart);
     bot.command('scrape', (ctx) => scrape(ctx));
-    bot.command('help', onHelp);
     bot.command('all', allDeals);
     bot.command('timer', setTimer);
     bot.command('stop', unsetTimer);
