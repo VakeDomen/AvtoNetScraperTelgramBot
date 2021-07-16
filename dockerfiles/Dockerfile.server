@@ -1,4 +1,4 @@
-FROM node:13-alpine
+FROM node:13
 WORKDIR /server
 COPY app .
 COPY server.entrypoint.sh .
