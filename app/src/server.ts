@@ -33,7 +33,7 @@ function start(): void {
     }
 }
 
-async function scrape(ctx, silent?: boolean) {
+function scrape(ctx, silent?: boolean) {
     console.info('[scrape] start')
 
     if (!url) {
@@ -168,7 +168,7 @@ function getFilter(ctx) {
     ctx.reply("Current filter: \n" + url);
 }
 
-async function setTimer(ctx) {
+function setTimer(ctx) {
     if (timer) {
         ctx.reply(`Already running`)
         return
