@@ -2,6 +2,6 @@ FROM node:13
 WORKDIR /server
 COPY app .
 COPY server.entrypoint.sh .
-RUN npm install && chmod 777 ./server.entrypoint.sh
+RUN npm ci && chmod 777 ./server.entrypoint.sh
 EXPOSE 3000
 ENTRYPOINT ["sh", "./server.entrypoint.sh"]
