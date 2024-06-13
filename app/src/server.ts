@@ -199,7 +199,7 @@ function unsetTimer(ctx) {
 
 function status(ctx) {
     let resp = "";
-    if (timer) resp += `🔴 Not running...`;
+    if (!timer) resp += `🔴 Not running...`;
     else resp += "🟢 Running...";
     resp += "\n";
     resp += `Last scrape: ${last.toString()}`
