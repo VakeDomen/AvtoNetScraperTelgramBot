@@ -34,14 +34,16 @@ function start(): void {
 }
 
 async function scrape(ctx, silent?: boolean) {
-    console.log('scpraping')
+    console.info('[scrape] start')
 
     if (!url) {
         ctx.reply("No filter url set. Provide a filter url with /setfilter <https://avto.net/Ads...>")
+        console.info('[scrape] end: no filter')
         return
     }
     if (scraping) {
         ctx.reply("Currently scraping...wait a minute...")
+        console.info('[scrape] end: working')
         return
     }
 
@@ -86,7 +88,6 @@ async function scrape(ctx, silent?: boolean) {
             const $ = cheerio.load(html);
     
             // Example: Print out the page title
-            console.log(html)
             const res = $('.stretched-link').splice(8);
             const links = res
                 .map((el: any) => el['attribs']['href'])
@@ -101,7 +102,6 @@ async function scrape(ctx, silent?: boolean) {
                     found = true;
                 }
             }
-            console.log(silent)
             if (!found && !silent) {
                 ctx.reply('No new deals. Type /all to see all found deals')
             }
@@ -110,9 +110,10 @@ async function scrape(ctx, silent?: boolean) {
             // Close Puppeteer
             await browser.close();
             scraping = false
+            console.info('[scrape] end: DONE!')
         } catch (e) {
             ctx.reply("Something went wrong scraping...check server logs")
-            console.error(e)
+            console.info('[scrape] E: ' + e)
             scraping = false
         }
     })();
@@ -137,7 +138,7 @@ function initBot(): void {
 }
 
 function help(ctx) {
-
+    console.info("[help]")
     ctx.reply(`
 /scrape - manually scrape current filter
 /status - status of the bot
@@ -155,7 +156,9 @@ function setFilter(ctx) {
         if (!url) {
             ctx.reply("Couldn't parse url filter. Provide a filter url with /setfilter <https://avto.net/Ads...>")
         }
+        console.info("[setFilter] " + url)
     } catch (e) {
+        console.info("[setFilter] E: " + e)
         ctx.reply("Something went wrong... make sure you only paste the link.")
     }
 }
